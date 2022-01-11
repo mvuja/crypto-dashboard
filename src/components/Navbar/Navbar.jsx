@@ -9,33 +9,25 @@ const Navbar = () => {
     const links = [
         {
             id: 1,
-            path: '/',
-            text: 'Home',
+            path: '/profile',
+            text: 'Profile',
         },
         {
             id: 2,
-            path:'/about',
-            text: 'About',
+            path:'/contacts',
+            text: 'Contacts',
         },
         {
             id: 3,
-            path:'/crates',
-            text: 'Crates',
+            path:'/calculator',
+            text: 'Calculator',
         },
         {
             id: 4,
-            path:'/contact',
-            text: 'Contact Us',
+            path:'/api',
+            text: 'API',
         },
     ]
-
-    const mobileMenuClick = () => {
-        if(!mobileMenu){
-            setMobileMenu('active')
-        }else{
-            setMobileMenu('')
-        }
-    }
 
     useEffect(() => {
       const navLinks = document.querySelectorAll('.nav-links li a')
@@ -49,12 +41,6 @@ const Navbar = () => {
 
     return (
         <nav className="nav-header">
-            
-                <div className={`hamburger ${mobileMenu}`} onClick={mobileMenuClick}>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
 
                 <ul className={`nav-links ${mobileMenu}`}>
                     {links.map(link => {
