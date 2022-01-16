@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 
 const ContactItem = props => {
 
@@ -19,7 +19,7 @@ const ContactItem = props => {
                     {phone}
                 </td>
                 <td>
-                    <button onClick={props.editContactProps}>E</button>
+                    <button onClick={() => props.editContactProps(id)}>E</button>
                     <button onClick={() => props.deleteContactProps(id)}>D</button>
                 </td>
             </tr>

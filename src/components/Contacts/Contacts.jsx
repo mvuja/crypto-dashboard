@@ -9,6 +9,12 @@ const Contacts = () => {
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('')
+    
+    const [firstNameEdit, setFirstNameEdit] = useState('')
+    const [lastNameEdit, setLastNameEdit] = useState('')
+    const [mailEdit, setMailEdit] = useState('')
+    const [phoneEdit, setPhoneEdit] = useState('')
+    const [IdEdit, setIdEdit] = useState()
 
     const [contacts, setContacts] = useState(getInitialContacts())
 
@@ -69,8 +75,6 @@ const Contacts = () => {
         return savedContacts || []
     }
     useEffect(() => {
-        console.log('djesi2')
-
         const temp = JSON.stringify(contacts)
         localStorage.setItem('contacts', temp)
 
@@ -95,11 +99,22 @@ const Contacts = () => {
     }
 
 
+
     // EDITING
     const [editing, setEditing] = useState(false)
 
-    const handleEditing = () => {
+    const handleEditing = id => {
         setEditing(true)
+        contacts.map(el => {
+            if(el.id === id){
+                setFirstNameEdit(el.firstName)
+                setLastNameEdit(el.lastName)
+                setMailEdit(el.email)
+                setPhoneEdit(el.phone)
+                setIdEdit(el.id)
+            }
+            return el
+        })
     }
     const removeEditingForm = () => {
         setEditing(false)
@@ -112,20 +127,31 @@ const Contacts = () => {
         viewMode.display = 'none'
     }
 
-    const setUpdate = (updatedTitle, id) => {
-        console.log(id)
+    const setUpdate = (updatedInput, id, type) => {
         setContacts(
             contacts.map(el => {
                 if(el.id === id){
-                    el.title = updatedTitle
+                    switch (type) {
+                        case 'firstName':
+                            el.firstName = updatedInput
+                            break;
+                        case 'lastName':
+                            el.lastName = updatedInput
+                            break;
+                        case 'mail':
+                            el.email = updatedInput
+                            break;
+                        case 'phone':
+                            el.phone = updatedInput
+                            break;                    
+                        default:
+                            break;
+                    }
                 }
                 return el
             })
         )
     }
-
-
-
 
     return (
         <div className="contacts-container">
@@ -201,34 +227,38 @@ const Contacts = () => {
                 </div>
 
                 <input type="text"
-                    value={contacts.firstName} 
-                    name="title"
+                    value={firstNameEdit}
+                    name="First Name"
                     onChange={e => {
-                        setUpdate(e.target.value, contacts.id)
+                        setUpdate(e.target.value, IdEdit, 'firstName')
+                        setFirstNameEdit(e.target.value)
                     }}
                 />
-                {/* <input type="text"
-                    value={contacts.lastName} 
-                    name="title"
+                <input type="text"
+                    value={lastNameEdit} 
+                    name="Last Name"
                     onChange={e => {
-                        setUpdate(e.target.value, e.id)
+                        setUpdate(e.target.value, IdEdit, 'lastName')
+                        setLastNameEdit(e.target.value)
                     }}
                 />
                 <input type="email"
-                    value={contacts.email} 
-                    name="title"
+                    value={mailEdit} 
+                    name="E mail"
                     onChange={e => {
-                        setUpdate(e.target.value, e.id)
+                        setUpdate(e.target.value, IdEdit, 'mail')
+                        setMailEdit(e.target.value)
                     }}
                 />
                 <input type="number"
-                    value={contacts.phone} 
-                    name="title"
+                    value={phoneEdit} 
+                    name="Phone"
                     onChange={e => {
-                        setUpdate(e.target.value, e.id)
+                        setUpdate(e.target.value, IdEdit, 'phone')
+                        setPhoneEdit(e.target.value)
                     }}
-                /> */}
-                <button className="btn edit-done">Submit</button>
+                />
+                <button onClick={removeEditingForm} className="btn edit-done">Done</button>
             </div>
         </div>
     )
