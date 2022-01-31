@@ -1,10 +1,11 @@
 @import 'mixin';
 @import 'utilities';
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Raleway:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700&display=swap');
 
 :root{
   --primary-color: #0D1119;
   --secondary-color: #040610;
+  --txt-color: #757592;
 }
 
 ::selection{
@@ -79,7 +80,6 @@ html.no-scroll{
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #fff;
   box-sizing: border-box;
   overflow-x: hidden;
   font-family: 'Raleway', sans-serif;
@@ -106,6 +106,7 @@ a{
   text-decoration: none;
   display: inline-block;
   color: inherit;
+  font-family: 'Syne', sans-serif;
 }
 
 button{
@@ -121,6 +122,7 @@ button[disabled]{
 
 p{
   line-height: 1.7;
+  font-family: 'Syne', sans-serif;
 }
 
 ul, ol{
@@ -131,16 +133,23 @@ input, textarea{
   font-family: inherit;
 }
 
+h1, h2, h3{
+  font-family: 'Syne', sans-serif;
+}
+
 
 #main{
   display: grid;
   grid-template-columns: 20% 1fr;
-  background: #fff;
-  width: 125rem;
-  max-width: 100%;
-  min-height: 70rem;
-  margin: auto;
-  border-radius: 2em;
-  box-shadow: 0em 1em 4em rgba($color: #000000, $alpha: .10);
+  background: #04040B;
+  width: 100vw;
+  // max-width: 100%;
+  height: 100vh;
   overflow: hidden;
+
+
+  .main-content{
+    height: 100vh;
+    // overflow-y: scroll;
+  }
 }

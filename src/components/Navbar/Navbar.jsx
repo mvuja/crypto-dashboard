@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {  Link, NavLink } from "react-router-dom"
 import './_navbar.scss';
+import logo from '../../assets/logo.svg';
 
 const Navbar = () => {
     
@@ -42,17 +43,19 @@ const Navbar = () => {
     return (
         <nav className="nav-header">
 
-                <ul className={`nav-links ${mobileMenu}`}>
-                    {links.map(link => {
-                        return (
-                            <li key={link.id} className='nav-link'>
-                                <NavLink to={link.path} activeClassName="active-link" exact>
-                                    {link.text}
-                                </NavLink>
-                            </li>
-                        )
-                    })}
-                </ul>
+            <img className="nav-logo" src={logo} alt="NFT LOGO" />
+
+            <ul className={`nav-links ${mobileMenu}`}>
+                {links.map(link => {
+                    return (
+                        <li key={link.id} className='nav-link'>
+                            <NavLink to={link.path} activeClassName="active-link" exact>
+                                {link.text}
+                            </NavLink>
+                        </li>
+                    )
+                })}
+            </ul>
         </nav>
     )
 }

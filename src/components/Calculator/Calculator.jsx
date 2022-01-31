@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
+import { Select, SelectOption } from 'reaselct';
 import axios from "axios";
 import './_calculator.scss'
 
@@ -16,6 +17,11 @@ const Calculator = () => {
     
     const [exchangeRate, setExchangeRate] = useState(0)
     const [result, setResult] = useState(0)
+
+
+    // SELECT PLUGIN
+    const [value, setValue] = useState(null);
+
 
     const convert = () => {
 
@@ -49,15 +55,13 @@ const Calculator = () => {
                 value={amount}
                 onChange={e => setAmount(e.target.value)}
                 />
-                <select
+
+                <Select
                     value={chosenPrimaryCurrency}
-                    name="currency-option-1"
-                    onChange={e => setChosenPrimaryCurrency(e.target.value)}
+                    onChange={setChosenPrimaryCurrency}
                     >
-
-                    {currencies.map( (el, i) => (<option key={i}>{el}</option>))}
-
-                </select>
+                    {currencies.map( (el, i) => (<SelectOption key={i} value={el}>{el}</SelectOption>))}
+                </Select>
             </div>
 
             <div className="second-currency">
@@ -66,15 +70,12 @@ const Calculator = () => {
                 value={result}
                 disabled={true}
                 />
-                <select
+                <Select
                     value={chosenSecondaryCurrency}
-                    name="currency-option-2"
-                    onChange={e => setChosenSecondaryCurrency(e.target.value)}
+                    onChange={setChosenSecondaryCurrency}
                     >
-
-                    {currencies2.map( (el, i) => (<option key={i}>{el}</option>))}
-
-                </select>
+                    {currencies2.map( (el, i) => (<SelectOption key={i} value={el}>{el}</SelectOption>))}
+                </Select>
             </div>
 
             <button id="btn convert-btn"
