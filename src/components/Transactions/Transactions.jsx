@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid'
-import './_contacts.scss';
+import './_transactions.scss';
 import ContactItem from './ContactItem/ContactItem.jsx'
+import { motion } from "framer-motion"
 
 const Contacts = () => {
     
@@ -159,113 +160,116 @@ const Contacts = () => {
     }
 
     return (
-        <div className="contacts-container">
-            <div className="contacts-table-container">
-                <div className="contacts-header">
-                    <h2>Contacts</h2>
-                    <button onClick={addNewHandler} className="add-contact">Add New</button>
-                </div>
-                <div className="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {contacts.map(el => (
-                                <ContactItem
-                                    key={el.id}
-                                    contact={el}
-                                    deleteContactProps={delContact}
-                                    editContactProps={handleEditing}
-                                />
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div style={addNewMode} className="add-new-container">
-                <div className="add-new-top">
-                    <h3>Add new contact</h3>
-                    <button onClick={removeForm}>X</button>
+        <motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
+            <div className="contacts-container">
+                <div className="contacts-table-container">
+                    <div className="contacts-header">
+                        <h2>Transactions</h2>
+                        <button onClick={addNewHandler} className="add-contact">Add New</button>
+                    </div>
+                    <div className="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {contacts.map(el => (
+                                    <ContactItem
+                                        key={el.id}
+                                        contact={el}
+                                        deleteContactProps={delContact}
+                                        editContactProps={handleEditing}
+                                    />
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
-                <form onSubmit={handleSubmit} className="contact-form">
+                <div style={addNewMode} className="add-new-container">
+                    <div className="add-new-top">
+                        <h3>Add new contact</h3>
+                        <button onClick={removeForm}>X</button>
+                    </div>
+
+                    <form onSubmit={handleSubmit} className="contact-form">
+                        <input type="text"
+                            placeholder="First Name"
+                            value={firstName} 
+                            name="firstName"
+                            onChange={onChangeFN}
+                        />
+                        <input type="text"
+                            placeholder="Last Name"
+                            value={lastName} 
+                            name="lastName"
+                            onChange={onChangeLN}
+                        />
+                        <input type="email"
+                            placeholder="E-mail"
+                            value={email} 
+                            name="email"
+                            onChange={onChangeE}
+                        />
+                        <input type="number"
+                            placeholder="Phone"
+                            value={phone} 
+                            name="phone"
+                            onChange={onChangeP}
+                        />
+                        <button className="btn submit">Submit</button>
+                    </form>
+                </div>
+
+                <div className="edit-form" style={viewMode}>
+                    <div className="add-new-top">
+                        <h3>Edit contact</h3>
+                        <button onClick={removeEditingForm}>X</button>
+                    </div>
+
                     <input type="text"
-                        placeholder="First Name"
-                        value={firstName} 
-                        name="firstName"
-                        onChange={onChangeFN}
+                        value={firstNameEdit}
+                        name="First Name"
+                        onChange={e => {
+                            setUpdate(e.target.value, IdEdit, 'firstName')
+                            setFirstNameEdit(e.target.value)
+                        }}
                     />
                     <input type="text"
-                        placeholder="Last Name"
-                        value={lastName} 
-                        name="lastName"
-                        onChange={onChangeLN}
+                        value={lastNameEdit} 
+                        name="Last Name"
+                        onChange={e => {
+                            setUpdate(e.target.value, IdEdit, 'lastName')
+                            setLastNameEdit(e.target.value)
+                        }}
                     />
                     <input type="email"
-                        placeholder="E-mail"
-                        value={email} 
-                        name="email"
-                        onChange={onChangeE}
+                        value={mailEdit} 
+                        name="E mail"
+                        onChange={e => {
+                            setUpdate(e.target.value, IdEdit, 'mail')
+                            setMailEdit(e.target.value)
+                        }}
                     />
                     <input type="number"
-                        placeholder="Phone"
-                        value={phone} 
-                        name="phone"
-                        onChange={onChangeP}
+                        value={phoneEdit} 
+                        name="Phone"
+                        onChange={e => {
+                            setUpdate(e.target.value, IdEdit, 'phone')
+                            setPhoneEdit(e.target.value)
+                        }}
                     />
-                    <button className="btn submit">Submit</button>
-                </form>
-            </div>
-
-            <div className="edit-form" style={viewMode}>
-                <div className="add-new-top">
-                    <h3>Edit contact</h3>
-                    <button onClick={removeEditingForm}>X</button>
+                    <button onClick={removeEditingForm} className="btn edit-done">Done</button>
                 </div>
-
-                <input type="text"
-                    value={firstNameEdit}
-                    name="First Name"
-                    onChange={e => {
-                        setUpdate(e.target.value, IdEdit, 'firstName')
-                        setFirstNameEdit(e.target.value)
-                    }}
-                />
-                <input type="text"
-                    value={lastNameEdit} 
-                    name="Last Name"
-                    onChange={e => {
-                        setUpdate(e.target.value, IdEdit, 'lastName')
-                        setLastNameEdit(e.target.value)
-                    }}
-                />
-                <input type="email"
-                    value={mailEdit} 
-                    name="E mail"
-                    onChange={e => {
-                        setUpdate(e.target.value, IdEdit, 'mail')
-                        setMailEdit(e.target.value)
-                    }}
-                />
-                <input type="number"
-                    value={phoneEdit} 
-                    name="Phone"
-                    onChange={e => {
-                        setUpdate(e.target.value, IdEdit, 'phone')
-                        setPhoneEdit(e.target.value)
-                    }}
-                />
-                <button onClick={removeEditingForm} className="btn edit-done">Done</button>
             </div>
-        </div>
+        </motion.div>
+
     )
 }
 

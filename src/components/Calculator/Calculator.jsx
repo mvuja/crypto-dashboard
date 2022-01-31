@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import { Select, SelectOption } from 'reaselct';
 import axios from "axios";
 import './_calculator.scss'
+import { motion } from "framer-motion"
 
 const Calculator = () => {
 
@@ -47,45 +48,48 @@ const Calculator = () => {
     }
 
     return (
-        <section id="calculator">
-            <div className="first-currency">
-                <input
-                type="number"
-                name="currency-amount-1"
-                value={amount}
-                onChange={e => setAmount(e.target.value)}
-                />
+        
+        <motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
+            <section id="calculator">
+                <div className="first-currency">
+                    <input
+                    type="number"
+                    name="currency-amount-1"
+                    value={amount}
+                    onChange={e => setAmount(e.target.value)}
+                    />
 
-                <Select
-                    value={chosenPrimaryCurrency}
-                    onChange={setChosenPrimaryCurrency}
-                    >
-                    {currencies.map( (el, i) => (<SelectOption key={i} value={el}>{el}</SelectOption>))}
-                </Select>
-            </div>
+                    <Select
+                        value={chosenPrimaryCurrency}
+                        onChange={setChosenPrimaryCurrency}
+                        >
+                        {currencies.map( (el, i) => (<SelectOption key={i} value={el}>{el}</SelectOption>))}
+                    </Select>
+                </div>
 
-            <div className="second-currency">
-                <input
-                name="currency-amount-2"
-                value={result}
-                disabled={true}
-                />
-                <Select
-                    value={chosenSecondaryCurrency}
-                    onChange={setChosenSecondaryCurrency}
-                    >
-                    {currencies2.map( (el, i) => (<SelectOption key={i} value={el}>{el}</SelectOption>))}
-                </Select>
-            </div>
+                <div className="second-currency">
+                    <input
+                    name="currency-amount-2"
+                    value={result}
+                    disabled={true}
+                    />
+                    <Select
+                        value={chosenSecondaryCurrency}
+                        onChange={setChosenSecondaryCurrency}
+                        >
+                        {currencies2.map( (el, i) => (<SelectOption key={i} value={el}>{el}</SelectOption>))}
+                    </Select>
+                </div>
 
-            <button id="btn convert-btn"
-            onClick={convert}
-            >Convert</button>
+                <button id="btn convert-btn"
+                onClick={convert}
+                >Convert</button>
 
-            <h3>Exchange rate: {exchangeRate}</h3>
-            <p>{primaryCurrencyExchanged} to {secondaryCurrencyExchanged}</p>
+                <h3>Exchange rate: {exchangeRate}</h3>
+                <p>{primaryCurrencyExchanged} to {secondaryCurrencyExchanged}</p>
 
-        </section>
+            </section>
+        </motion.div>
     )
         
 }

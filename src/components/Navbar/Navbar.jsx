@@ -15,18 +15,18 @@ const Navbar = () => {
         },
         {
             id: 2,
-            path:'/contacts',
-            text: 'Contacts',
-        },
-        {
-            id: 3,
             path:'/calculator',
             text: 'Calculator',
         },
         {
+            id: 3,
+            path:'/analytics',
+            text: 'Analytics',
+        },
+        {
             id: 4,
-            path:'/news',
-            text: 'News',
+            path:'/transactions',
+            text: 'Transactions',
         },
     ]
 

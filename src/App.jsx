@@ -1,25 +1,35 @@
-import { React } from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { React, useState } from 'react'
+import { Route, Switch, Redirect, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar/Navbar.jsx'
 import Profile from './components/Profile/Profile.jsx'
-import Contacts from './components/Contacts/Contacts.jsx'
+import Transactions from './components/Transactions/Transactions.jsx'
 import Calculator from './components/Calculator/Calculator.jsx'
-import News from './components/News/News.jsx'
+import Analytics from './components/Analytics/Analytics.jsx'
+
+import { AnimatePresence } from "framer-motion"
+
 
 function App() {
+
+  const [state, setState] = useState(false);
+
+  const location = useLocation()
 
   return (
     <main id='main'>
       <Navbar />
       <div className='main-content'>
-      <Switch>
-          <Redirect exact path="/" to="/profile" />
-          <Route path="/profile" component={Profile} />
-          <Route path="/contacts" component={Contacts}/>
-          <Route path="/calculator" component={Calculator} />
-          <Route path="/news" component={News}/>
-          {/* <Route path="*" component={NotMatch}/> */}
-        </Switch>
+        <AnimatePresence exitBeforeEnter>
+          <Switch location={location} key={location.pathname}>
+            <Redirect exact path="/" to="/profile" />
+            <Route path="/profile" component={Profile} />
+            <Route path="/calculator" component={Calculator} />
+            <Route path="/analytics" component={Analytics}/>
+            <Route path="/transactions" component={Transactions}/>
+            {/* <Route path="*" component={NotMatch}/> */}
+          </Switch>
+        </AnimatePresence>
+
       </div>
     </main>
   )
