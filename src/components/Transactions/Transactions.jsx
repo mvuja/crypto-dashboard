@@ -3,21 +3,26 @@ import { v4 as uuidv4 } from 'uuid'
 import './_transactions.scss';
 import ContactItem from './ContactItem/ContactItem.jsx'
 import { motion } from "framer-motion"
+import { Select, SelectOption } from 'reaselct';
 
 const Contacts = () => {
     
-    const [firstName, setfirstName] = useState('')
-    const [lastName, setLastName] = useState('')
+    const [name, setName] = useState('')
     const [email, setEmail] = useState('')
-    const [phone, setPhone] = useState('')
+    // const [lastName, setLastName] = useState('')
+    const [amount, setAmount] = useState('')
     
-    const [firstNameEdit, setFirstNameEdit] = useState('')
-    const [lastNameEdit, setLastNameEdit] = useState('')
+    const [nameEdit, setNameEdit] = useState('')
     const [mailEdit, setMailEdit] = useState('')
-    const [phoneEdit, setPhoneEdit] = useState('')
+    // const [lastNameEdit, setLastNameEdit] = useState('')
+    const [amountEdit, setAmountEdit] = useState('')
+    const [coinEdit, setCoinEdit] = useState('')
     const [IdEdit, setIdEdit] = useState()
 
     const [contacts, setContacts] = useState(getInitialContacts())
+
+    // ADD NEW COIN
+    const [chosenCurrency, setChosenCurrency] = useState('BTC')
 
     // DELETE CONTACT
     const delContact = id => {
@@ -29,38 +34,43 @@ const Contacts = () => {
     }
 
     // ADDING NEW CONTACT
-    const addContactItem = (firstName, lastName, email, phone) => {
+    const addContactItem = (name, email, amount, coin) => {
         const newContact = {
             id: uuidv4(),
-            firstName: firstName,
-            lastName: lastName,
+            name: name,
             email: email,
-            phone: phone,
+            // lastName: lastName,
+            amount: amount,
+            coin: coin,
         }
         setContacts([...contacts, newContact])
     }
 
-    const onChangeFN = e => {
-        setfirstName(e.target.value)
+    const onChangeName = e => {
+        setName(e.target.value)
     }
-    const onChangeLN = e => {
-        setLastName(e.target.value)
-    }
-    const onChangeE = e => {
+    const onChangeEmail = e => {
         setEmail(e.target.value)
     }
-    const onChangeP = e => {
-        setPhone(e.target.value)
+    // const onChangeLN = e => {
+    //     setLastName(e.target.value)
+    // }
+    const onChangeAmount = e => {
+        setAmount(e.target.value)
+    }
+    const onChangeCoin = e => {
+        setChosenCurrency(e.target.value)
     }
 
     const handleSubmit = e => {
         e.preventDefault()
-        if(firstName.trim() && lastName.trim() && email.trim() && phone.trim()){
-            addContactItem(firstName, lastName, email, phone)
-            setfirstName('')
-            setLastName('')
+        if(name.trim() && email.trim() && amount.trim()){
+            addContactItem(name, email, amount, chosenCurrency)
+            setName('')
             setEmail('')
-            setPhone('')
+            // setLastName('')
+            setAmount('')
+            setChosenCurrency('BTC')
         }else{
             alert('Please write an item')
         }
@@ -74,10 +84,7 @@ const Contacts = () => {
         const temp = localStorage.getItem('contacts')
         const savedContacts = JSON.parse(temp)
         return savedContacts || [
-            {id: '1', firstName: 'Marko', lastName: 'Vujanović', email: 'mvuja@gmail.com', phone: '3254325'},
-            {id: '2', firstName: 'Marko', lastName: 'Vujanović', email: 'mvuja@gmail.com', phone: '3254325'},
-            {id: '3', firstName: 'Marko', lastName: 'Vujanović', email: 'mvuja@gmail.com', phone: '3254325'},
-            {id: '4', firstName: 'Marko', lastName: 'Vujanović', email: 'mvuja@gmail.com', phone: '3254325'}
+            {id: '1', name: 'Marko', email: 'mvuja@gmail.com', amount: '3254325', coin: 'BTC'},
         ]
     }
     useEffect(() => {
@@ -113,10 +120,10 @@ const Contacts = () => {
         setEditing(true)
         contacts.map(el => {
             if(el.id === id){
-                setFirstNameEdit(el.firstName)
-                setLastNameEdit(el.lastName)
+                setNameEdit(el.name)
                 setMailEdit(el.email)
-                setPhoneEdit(el.phone)
+                setAmountEdit(el.amount)
+                setCoinEdit(el.coin)
                 setIdEdit(el.id)
             }
             return el
@@ -138,18 +145,22 @@ const Contacts = () => {
             contacts.map(el => {
                 if(el.id === id){
                     switch (type) {
-                        case 'firstName':
-                            el.firstName = updatedInput
-                            break;
-                        case 'lastName':
-                            el.lastName = updatedInput
+                        case 'name':
+                            el.name = updatedInput
                             break;
                         case 'mail':
                             el.email = updatedInput
                             break;
-                        case 'phone':
-                            el.phone = updatedInput
-                            break;                    
+                        // case 'lastName':
+                        //     el.lastName = updatedInput
+                        //     break;
+                        case 'amount':
+                            el.amount = updatedInput
+                            break;
+                        case 'coin':
+                            el.coin = updatedInput
+                            console.log('djesi')
+                            break;
                         default:
                             break;
                     }
@@ -158,6 +169,14 @@ const Contacts = () => {
             })
         )
     }
+
+    const currencies = [
+        'BTC', 'ETH',
+        'BNB', 'USDT',
+        'SOL', 'ADA',
+        'XRP', 'LUNA',
+        'DOT'
+    ]
 
     return (
         <motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
@@ -171,10 +190,10 @@ const Contacts = () => {
                         <table>
                             <thead>
                                 <tr>
-                                    <th>First Name</th>
-                                    <th>Last Name</th>
+                                    <th>Name</th>
                                     <th>Email</th>
-                                    <th>Phone</th>
+                                    <th>Amount</th>
+                                    <th>Coin</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -205,29 +224,38 @@ const Contacts = () => {
 
                     <form onSubmit={handleSubmit} className="contact-form">
                         <input type="text"
-                            placeholder="First Name"
-                            value={firstName} 
-                            name="firstName"
-                            onChange={onChangeFN}
-                        />
-                        <input type="text"
-                            placeholder="Last Name"
-                            value={lastName} 
-                            name="lastName"
-                            onChange={onChangeLN}
+                            placeholder="Name"
+                            value={name} 
+                            name="Name"
+                            onChange={onChangeName}
                         />
                         <input type="email"
                             placeholder="E-mail"
                             value={email} 
                             name="email"
-                            onChange={onChangeE}
+                            onChange={onChangeEmail}
                         />
                         <input type="number"
-                            placeholder="Phone"
-                            value={phone} 
-                            name="phone"
-                            onChange={onChangeP}
+                            placeholder="Amount"
+                            value={amount} 
+                            name="amount"
+                            onChange={onChangeAmount}
                         />
+                        {/* <input type="text"
+                            placeholder="Coin"
+                            value={lastName} 
+                            name="lastName"
+                            onChange={onChangeLN}
+                        /> */}
+                        <div className="coin-select-wrapper">
+                            <Select
+                                value={chosenCurrency}
+                                onChange={setChosenCurrency}
+                                >
+                                {currencies.map( (el, i) => (<SelectOption key={i} value={el}>{el}</SelectOption>))}
+                            </Select>
+                        </div>
+
                         <button className="btn submit">Submit</button>
                     </form>
                 </div>
@@ -239,19 +267,11 @@ const Contacts = () => {
                     </div>
 
                     <input type="text"
-                        value={firstNameEdit}
-                        name="First Name"
+                        value={nameEdit}
+                        name="Name"
                         onChange={e => {
-                            setUpdate(e.target.value, IdEdit, 'firstName')
-                            setFirstNameEdit(e.target.value)
-                        }}
-                    />
-                    <input type="text"
-                        value={lastNameEdit} 
-                        name="Last Name"
-                        onChange={e => {
-                            setUpdate(e.target.value, IdEdit, 'lastName')
-                            setLastNameEdit(e.target.value)
+                            setUpdate(e.target.value, IdEdit, 'name')
+                            setNameEdit(e.target.value)
                         }}
                     />
                     <input type="email"
@@ -263,13 +283,24 @@ const Contacts = () => {
                         }}
                     />
                     <input type="number"
-                        value={phoneEdit} 
-                        name="Phone"
+                        value={amountEdit} 
+                        name="Amount"
                         onChange={e => {
-                            setUpdate(e.target.value, IdEdit, 'phone')
-                            setPhoneEdit(e.target.value)
+                            setUpdate(e.target.value, IdEdit, 'amount')
+                            setAmountEdit(e.target.value)
                         }}
                     />
+                    <div className="coin-select-wrapper">
+                        <Select
+                            value={coinEdit}
+                            onChange={e => {
+                                setUpdate(e, IdEdit, 'coin')
+                                setCoinEdit(e)
+                            }}
+                            >
+                            {currencies.map( (el, i) => (<SelectOption key={i} value={el}>{el}</SelectOption>))}
+                        </Select>
+                    </div>
                     <button onClick={removeEditingForm} className="btn edit-done">Done</button>
                 </div>
             </div>

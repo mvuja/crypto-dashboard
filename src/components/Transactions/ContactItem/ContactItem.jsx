@@ -3,20 +3,20 @@ import React from "react"
 const ContactItem = props => {
 
     // DESTUCTURING
-    const {id, firstName, lastName, email, phone} = props.contact
+    const {id, name, email, coin, amount} = props.contact
 
     return <tr className='nav-link' key={id}>
                 <td>
-                    {firstName}
-                </td>
-                <td>
-                    {lastName}
+                    {name}
                 </td>
                 <td>
                     {email}
                 </td>
                 <td>
-                    {phone}
+                    {amount}
+                </td>
+                <td>
+                    {coin}
                 </td>
                 <td>
                     <button onClick={() => props.editContactProps(id)}>E</button>

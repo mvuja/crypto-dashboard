@@ -4,6 +4,12 @@ import './_navbar.scss';
 import logo from '../../assets/logo.svg';
 import newsIcon from '../../assets/news-icon.svg';
 import newsIconActive from '../../assets/news-icon-active.svg';
+import calcIcon from '../../assets/calc-icon.svg';
+import calcIconActive from '../../assets/calc-icon-active.svg';
+import analyticsIcon from '../../assets/analytics-icon.svg';
+import analyticsIconActive from '../../assets/analytics-icon-active.svg';
+import transactionsIcon from '../../assets/transactions-icon.svg';
+import transactionsIconActive from '../../assets/transactions-icon-active.svg';
 
 import { v4 as uuidv4 } from 'uuid'
 
@@ -19,24 +25,32 @@ const Navbar = () => {
             path: '/profile',
             text: 'Profile',
             class: 'profile2',
+            mainIcon: newsIcon,
+            activeIcon: newsIconActive,
         },
         {
             id: 2,
             path:'/calculator',
             text: 'Calculator',
             class: 'calculator',
+            mainIcon: calcIcon,
+            activeIcon: calcIconActive,
         },
         {
             id: 3,
             path:'/analytics',
             text: 'Analytics',
             class: 'analytics',
+            mainIcon: analyticsIcon,
+            activeIcon: analyticsIconActive,
         },
         {
             id: 4,
             path:'/transactions',
             text: 'Transactions',
             class: 'transactions',
+            mainIcon: transactionsIcon,
+            activeIcon: transactionsIconActive,
         },
     ]
 
@@ -84,8 +98,8 @@ const Navbar = () => {
                         <li key={link.id} className='nav-link' onClick={setRandomFunc}>
                             <NavLink to={link.path} id={link.class} activeClassName="active-link" exact>
                                 <div id="cf">
-                                    <img className="bottom" src={newsIconActive} />
-                                    <img className="top" src={newsIcon} />
+                                    <img className="bottom" src={link.activeIcon} />
+                                    <img className="top" src={link.mainIcon} />
                                 </div>
                                 {link.text}
                             </NavLink>
