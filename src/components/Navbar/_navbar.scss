@@ -16,25 +16,81 @@
     .nav-links{
         display: flex;
         flex-direction: column;
-        text-align: center;
         justify-content: center;
         gap: 4rem;
         width: 100%;
+        padding-left: 50%;
+        padding-right: 104%;
+        position: relative;
+
+        --ease-mode: cubic-bezier(.43,-0.35,.6,1.69);
+        --ease-duration: .5s;
+
+        .before-el{
+            position: absolute;
+            width: 70%;
+            height: 8.5rem;
+            background: linear-gradient(to bottom right, rgba(61, 70, 102, 0.15), rgba(31, 32, 37, 0.06));
+            backdrop-filter: blur(12.5px);
+            -webkit-backdrop-filter: blur(12.5px);
+            border: 1px solid rgba(31, 39, 50, 1);
+            border-left: none;
+            border-radius: 10px;
+            z-index: -1;
+            left: 0;
+            transition: top var(--ease-duration) var(--ease-mode);
+        }
+
+        .line{
+            position: absolute;
+            width: 10.7rem;
+            height: 8.5rem;
+            background: #1813D2;
+            z-index: -1;
+            left: 0;
+            transition: top var(--ease-duration) var(--ease-mode);
+        }
         
-        li{
+        .nav-link{
+            width: min-content;
     
             a{
                 font-size: 1.6rem;
                 display: block;
-                padding: 2rem 4rem;
+                padding: .5rem 0;
                 color: var(--txt-color);
                 transition: color .3s ease;
+
+                display: flex;
+                align-items: center;
+
+                #cf{
+                    position: relative;
+                    height: 54px;
+                    width: 54px;
+                    margin: 0 auto;
+                    margin-right: 2rem;
+
+                    img{
+                        position: absolute;
+                        left: 0;
+                        transition: opacity .1s ease-in-out;
+                    }
+                }
 
                 &.active-link,
                 &:hover,
                 &:focus-visible{
                     color: #fff;
-                }
+
+                    #cf{    
+                        img{
+                            &.top{
+                                opacity: 0;
+                            }
+                        }
+                    }
+                }   
             }
         }
     }

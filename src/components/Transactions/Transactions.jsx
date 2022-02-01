@@ -73,7 +73,7 @@ const Contacts = () => {
     function getInitialContacts() {
         const temp = localStorage.getItem('contacts')
         const savedContacts = JSON.parse(temp)
-        return savedContacts && [
+        return savedContacts || [
             {id: '1', firstName: 'Marko', lastName: 'Vujanović', email: 'mvuja@gmail.com', phone: '3254325'},
             {id: '2', firstName: 'Marko', lastName: 'Vujanović', email: 'mvuja@gmail.com', phone: '3254325'},
             {id: '3', firstName: 'Marko', lastName: 'Vujanović', email: 'mvuja@gmail.com', phone: '3254325'},
@@ -179,14 +179,19 @@ const Contacts = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {contacts.map(el => (
-                                    <ContactItem
-                                        key={el.id}
-                                        contact={el}
-                                        deleteContactProps={delContact}
-                                        editContactProps={handleEditing}
-                                    />
-                                ))}
+                                {
+                                contacts ?
+                                    contacts.map(el => (
+                                        <ContactItem
+                                            key={el.id}
+                                            contact={el}
+                                            deleteContactProps={delContact}
+                                            editContactProps={handleEditing}
+                                        />
+                                    ))
+                                    :
+                                    ''
+                                }
                             </tbody>
                         </table>
                     </div>

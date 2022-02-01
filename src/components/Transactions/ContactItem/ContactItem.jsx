@@ -5,7 +5,7 @@ const ContactItem = props => {
     // DESTUCTURING
     const {id, firstName, lastName, email, phone} = props.contact
 
-    return <tr className='nav-link'>
+    return <tr className='nav-link' key={id}>
                 <td>
                     {firstName}
                 </td>
