@@ -5,6 +5,13 @@ import ContactItem from './ContactItem/ContactItem.jsx'
 import { motion } from "framer-motion"
 import { Select, SelectOption } from 'reaselct';
 
+import plus from '../../assets/add-new.svg';
+import blueCircle from '../../assets/blue-circle-tran.png';
+import yellowCircle from '../../assets/yellow-circle-tran.png';
+import closeFormImg from '../../assets/close-form.svg';
+
+
+
 const Contacts = () => {
     
     const [name, setName] = useState('')
@@ -84,7 +91,15 @@ const Contacts = () => {
         const temp = localStorage.getItem('contacts')
         const savedContacts = JSON.parse(temp)
         return savedContacts || [
-            {id: '1', name: 'Marko', email: 'mvuja@gmail.com', amount: '3254325', coin: 'BTC'},
+            {id: uuidv4(), name: 'Marko', email: 'mvuja@gmail.com', amount: '3254325', coin: 'BTC'},
+            {id: uuidv4(), name: 'Marko', email: 'mvuja@gmail.com', amount: '3254325', coin: 'BTC'},
+            {id: uuidv4(), name: 'Marko', email: 'mvuja@gmail.com', amount: '3254325', coin: 'BTC'},
+            {id: uuidv4(), name: 'Marko', email: 'mvuja@gmail.com', amount: '3254325', coin: 'BTC'},
+            {id: uuidv4(), name: 'Marko', email: 'mvuja@gmail.com', amount: '3254325', coin: 'BTC'},
+            {id: uuidv4(), name: 'Marko', email: 'mvuja@gmail.com', amount: '3254325', coin: 'BTC'},
+            {id: uuidv4(), name: 'Marko', email: 'mvuja@gmail.com', amount: '3254325', coin: 'BTC'},
+            {id: uuidv4(), name: 'Marko', email: 'mvuja@gmail.com', amount: '3254325', coin: 'BTC'},
+            {id: uuidv4(), name: 'Marko', email: 'mvuja@gmail.com', amount: '3254325', coin: 'BTC'},
         ]
     }
     useEffect(() => {
@@ -96,25 +111,34 @@ const Contacts = () => {
 
 
 
-    // ADD NEW BUTTON
+    // ADD NEW BUTTON    
+    
     const [addNew, setAddNew] = useState(false)
-    const addNewMode = {}
+    const [editing, setEditing] = useState(false)
+    
+    // const addNewMode = {}
+    // const viewMode = {}
+    const [addNewMode, setAddNewMode] = useState('block')
+    const [viewMode, setViewMode] = useState('block')
     const addNewHandler = () => {
         setAddNew(true)
     }
     const removeForm = () => {
         setAddNew(false)
     }
-    if(addNew){
-        addNewMode.display = 'block'
-    }else{
-        addNewMode.display = 'none'
-    }
+    useEffect(() => {
+        if(addNew){
+            setAddNewMode('block')
+            setEditing(false)
+        }else{
+            setAddNewMode('none')
+        }
+    }, [addNew]);
+
 
 
 
     // EDITING
-    const [editing, setEditing] = useState(false)
 
     const handleEditing = id => {
         setEditing(true)
@@ -132,13 +156,15 @@ const Contacts = () => {
     const removeEditingForm = () => {
         setEditing(false)
     }
-    const viewMode = {}
 
-    if(editing){
-        viewMode.display = 'block'
-    }else{
-        viewMode.display = 'none'
-    }
+    useEffect(() => {
+        if(editing){
+            setViewMode('block')
+            setAddNew(false)
+        }else{
+            setViewMode('none')
+        }
+    }, [editing]);
 
     const setUpdate = (updatedInput, id, type) => {
         setContacts(
@@ -181,10 +207,17 @@ const Contacts = () => {
     return (
         <motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
             <div className="contacts-container">
+
+            <img className="blue-circle" src={blueCircle} alt="blue circle" />
+            <img className="yellow-circle" src={yellowCircle} alt="yellow circle" />
+
                 <div className="contacts-table-container">
                     <div className="contacts-header">
                         <h2>Transactions</h2>
-                        <button onClick={addNewHandler} className="add-contact">Add New</button>
+                        <button onClick={addNewHandler} className="add-contact">
+                        <img className="add-new" src={plus} alt="plus"/>
+                            Add New
+                        </button>
                     </div>
                     <div className="table-container">
                         <table>
@@ -216,26 +249,28 @@ const Contacts = () => {
                     </div>
                 </div>
 
-                <div style={addNewMode} className="add-new-container">
+                <div style={{display: addNewMode}} className="add-new-container">
                     <div className="add-new-top">
                         <h3>Add new contact</h3>
-                        <button onClick={removeForm}>X</button>
+                        <button onClick={removeForm}>
+                            <img src={closeFormImg} alt="close form" />
+                        </button>
                     </div>
 
                     <form onSubmit={handleSubmit} className="contact-form">
-                        <input type="text"
+                        <input className="add-new-input" type="text"
                             placeholder="Name"
                             value={name} 
                             name="Name"
                             onChange={onChangeName}
                         />
-                        <input type="email"
+                        <input className="add-new-input" type="email"
                             placeholder="E-mail"
                             value={email} 
                             name="email"
                             onChange={onChangeEmail}
                         />
-                        <input type="number"
+                        <input className="add-new-input" type="number"
                             placeholder="Amount"
                             value={amount} 
                             name="amount"
@@ -251,6 +286,9 @@ const Contacts = () => {
                             <Select
                                 value={chosenCurrency}
                                 onChange={setChosenCurrency}
+                                filterable={false}
+                                clearable={false}
+                                style={{width: '100%'}}
                                 >
                                 {currencies.map( (el, i) => (<SelectOption key={i} value={el}>{el}</SelectOption>))}
                             </Select>
@@ -260,48 +298,54 @@ const Contacts = () => {
                     </form>
                 </div>
 
-                <div className="edit-form" style={viewMode}>
+                <div className="edit-form" style={{display: viewMode}} >
                     <div className="add-new-top">
                         <h3>Edit contact</h3>
-                        <button onClick={removeEditingForm}>X</button>
+                        <button onClick={removeEditingForm}>
+                            <img src={closeFormImg} alt="close form" />
+                        </button>
                     </div>
 
-                    <input type="text"
-                        value={nameEdit}
-                        name="Name"
-                        onChange={e => {
-                            setUpdate(e.target.value, IdEdit, 'name')
-                            setNameEdit(e.target.value)
-                        }}
-                    />
-                    <input type="email"
-                        value={mailEdit} 
-                        name="E mail"
-                        onChange={e => {
-                            setUpdate(e.target.value, IdEdit, 'mail')
-                            setMailEdit(e.target.value)
-                        }}
-                    />
-                    <input type="number"
-                        value={amountEdit} 
-                        name="Amount"
-                        onChange={e => {
-                            setUpdate(e.target.value, IdEdit, 'amount')
-                            setAmountEdit(e.target.value)
-                        }}
-                    />
-                    <div className="coin-select-wrapper">
-                        <Select
-                            value={coinEdit}
+                    <div className="contact-form">
+                        <input className="edit-input" type="text"
+                            value={nameEdit}
+                            name="Name"
                             onChange={e => {
-                                setUpdate(e, IdEdit, 'coin')
-                                setCoinEdit(e)
+                                setUpdate(e.target.value, IdEdit, 'name')
+                                setNameEdit(e.target.value)
                             }}
-                            >
-                            {currencies.map( (el, i) => (<SelectOption key={i} value={el}>{el}</SelectOption>))}
-                        </Select>
+                        />
+                        <input className="edit-input" type="email"
+                            value={mailEdit} 
+                            name="E mail"
+                            onChange={e => {
+                                setUpdate(e.target.value, IdEdit, 'mail')
+                                setMailEdit(e.target.value)
+                            }}
+                        />
+                        <input className="edit-input" type="number"
+                            value={amountEdit} 
+                            name="Amount"
+                            onChange={e => {
+                                setUpdate(e.target.value, IdEdit, 'amount')
+                                setAmountEdit(e.target.value)
+                            }}
+                        />
+                        <div className="coin-select-wrapper">
+                            <Select
+                                value={coinEdit}
+                                onChange={e => {
+                                    setUpdate(e, IdEdit, 'coin')
+                                    setCoinEdit(e)
+                                }}
+                                filterable={false}
+                                clearable={false}
+                                >
+                                {currencies.map( (el, i) => (<SelectOption key={i} value={el}>{el}</SelectOption>))}
+                            </Select>
+                        </div>
+                        <button onClick={removeEditingForm} className="btn edit-done">Done</button>
                     </div>
-                    <button onClick={removeEditingForm} className="btn edit-done">Done</button>
                 </div>
             </div>
         </motion.div>

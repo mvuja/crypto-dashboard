@@ -1,0 +1,100 @@
+#calculator{
+    display: flex;
+    justify-content: space-between;
+
+    .blue-circle{
+        position: absolute;
+        bottom: -35rem;
+        left: 5rem;
+    }
+
+    .container{
+        padding: 12rem 7rem 12rem;
+
+        h2{
+            color: #fff;
+            margin-bottom: 8rem;
+        }
+
+        .currency-boxes{
+            display: flex;
+            gap: 3rem;
+
+            .currency-box{
+                background: linear-gradient(to bottom right, rgba(61, 70, 102, 0.15), rgba(31, 32, 37, 0.06));
+                backdrop-filter: blur(12.5px);
+                -webkit-backdrop-filter: blur(12.5px);
+                border: 1px solid rgba(31, 39, 50, 1);
+                padding: 5rem 4.5rem 10rem;
+                flex: 1;
+                border-radius: 2rem;
+
+                & > p{
+                    font-size: 3rem;
+                    color: #fff;
+                    font-weight: 700;
+                    margin-bottom: 3rem;
+                }
+
+                .input-amount{
+                    display: flex;
+                    --select-border-radius: 0 1rem 1rem 0;
+
+                    input{
+                        background: #04040B;
+                        border: none;
+                        padding: 2rem;
+                        color: #fff;
+                        font-size: 1.6rem;
+                        
+                        &:first-child{
+                            border-radius: 1rem 0 0 1rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        .convert-container{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 3rem;
+
+            .convert-btn{
+                background: transparent;
+                border: 1px solid #fff;
+                padding: 2rem 6rem;
+                align-self: flex-start;
+                color: #fff;
+                border-radius: 1rem;
+                font-size: 1.6rem;
+                margin-top: 1em;
+            }
+
+            .prices-result{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                
+                .exchange-rate{
+                    color: #fff;
+                    font-size: 1.6rem;
+                    font-weight: 700;
+                    margin-bottom: 1rem;
+                }
+
+                .total-amount{
+                    color: #fff;
+                    font-size: 2.6rem;
+                    font-weight: 700;
+                    line-height: 1;
+                }
+            }
+        }
+    }
+
+    .coin-in-hand{
+        transform: translateX(-10px);
+    }
+}
