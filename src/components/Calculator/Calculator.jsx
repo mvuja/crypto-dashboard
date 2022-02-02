@@ -107,7 +107,7 @@ const Calculator = () => {
                     </div>
 
                     <div className="convert-container">
-                        <button class="btn convert-btn"
+                        <button className="btn convert-btn"
                         onClick={convert}>Convert</button>
 
                         <div className="prices-result">
