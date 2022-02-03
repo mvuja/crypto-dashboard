@@ -1,4 +1,59 @@
 #analytics{
+    position: relative;
+
+    .blue-circle{
+        position: absolute;
+        bottom: -35rem;
+        left: -37rem;
+    }
+    .yellow-circle{
+        position: absolute;
+        top: -34rem;
+        right: 38rem;
+    }
+    
+    .container{
+        height: 100vh;
+        padding: 12rem 7rem 12rem;
+
+        h2{
+            color: #fff;
+            margin-bottom: 8rem;
+        }
+
+        .charts{
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            // gap: 1rem;
+
+            .canvas{
+                background: linear-gradient(to bottom right, rgba(61, 70, 102, 0.15), rgba(31, 32, 37, 0.06));
+                backdrop-filter: blur(12.5px);
+                -webkit-backdrop-filter: blur(12.5px);
+                border: 1px solid rgba(31, 39, 50, 1);
+                padding: 5rem 6rem 10rem;
+                border-radius: 2rem;
+            }
+
+            .canvas-pie{
+                --aspect: 55rem;
+                width: var(--aspect);
+                height: var(--aspect);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .canvas-bar{
+                --aspect: 80rem;
+                width: var(--aspect);
+                // height: var(--aspect);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
 
     & h2{
         color: black;

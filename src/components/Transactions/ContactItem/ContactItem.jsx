@@ -1,19 +1,33 @@
 import React from "react"
+import { useEffect } from "react/cjs/react.development"
 
 const ContactItem = props => {
 
     // DESTUCTURING
     const {id, name, email, coin, amount} = props.contact
 
+
+        const commaAmount = amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+
+
     return <tr className='nav-link' key={id}>
                 <td>
                     {name}
                 </td>
                 <td>
+                    <div className="line"></div>
+                </td>
+                <td>
                     {email}
                 </td>
                 <td>
-                    ${amount}
+                <div className="line"></div>
+                </td>
+                <td>
+                    ${commaAmount}
+                </td>
+                <td>
+                    <div className="line"></div>
                 </td>
                 <td>
                     {coin}

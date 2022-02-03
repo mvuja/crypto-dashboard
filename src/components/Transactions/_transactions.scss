@@ -46,7 +46,7 @@
     
         & .table-container{
             overflow-y: scroll;
-            height: 77%;
+            height: 86%;
             padding-right: 3rem;
 
             &::-webkit-scrollbar {
@@ -72,6 +72,12 @@
                 width: 100%;
                 font-size: 1.6rem;
                 color: #fff;
+
+                .line{
+                    height: 40px;
+                    width: 1px;
+                    background: #38404A;
+                }
                 
                 & thead{
                     position: sticky;
@@ -159,6 +165,7 @@
         padding: 5rem 4rem;
         border-radius: 2rem 0 0 2rem;
         width: 60rem;
+        transform: translateY(6rem);
 
         .add-new-top{
             display: flex;
@@ -236,6 +243,7 @@
         padding: 5rem 4rem;
         border-radius: 2rem 0 0 2rem;
         width: 60rem;
+        transform: translateY(6rem);
 
         .add-new-top{
             display: flex;

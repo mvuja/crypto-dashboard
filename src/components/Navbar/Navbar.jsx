@@ -22,8 +22,8 @@ const Navbar = () => {
     const links = [
         {
             id: 1,
-            path: '/profile',
-            text: 'Profile',
+            path: '/news',
+            text: 'News',
             class: 'profile2',
             mainIcon: newsIcon,
             activeIcon: newsIconActive,

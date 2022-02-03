@@ -109,16 +109,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
-  overflow-x: hidden;
+  overflow: hidden;
   font-family: 'Syne', sans-serif;
-  min-height: 100vh;
+  min-height: 90rem;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-body.no-scroll{
-  overflow: hidden;
 }
 
 img {
@@ -185,10 +182,49 @@ h1, h2, h3{
   // max-width: 100%;
   height: 100vh;
   overflow: hidden;
-
-
+  
   .main-content{
     height: 100vh;
     // overflow-y: scroll;
+  }
+
+  @media only screen and (max-width: 1640px) {
+    display: none;
+  }
+}
+
+.resize{
+  background: #04040B;
+  height: 100vh;
+  width: 100vw;
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  .resize-txt{
+    font-size: 5rem;
+    color: #fff;
+    font-weight: 700;
+
+    @media only screen and (max-width: 740px) {
+      font-size: 2rem;
+    }
+  }
+
+  @media only screen and (max-width: 1640px) {
+    display: flex;
+  }
+
+
+
+}
+
+
+.btn{
+  transition: background .3s ease, color .3s ease;
+
+  &:hover{
+    background: #fff!important;
+    color: var(--secondary-color)!important;
   }
 }

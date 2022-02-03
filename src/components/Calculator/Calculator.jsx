@@ -55,7 +55,7 @@ const Calculator = () => {
         <motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}}>
             <section id="calculator">
 
-                <img className="blue-circle" src={blueCircle} alt="" />
+                <img className="blue-circle" src={blueCircle} alt="blue circle" />
 
                 <div className="container">
                     <h2>Crypto-Currency Calculator</h2>
@@ -118,10 +118,8 @@ const Calculator = () => {
 
                 </div>
 
-
-
-
                 <img className="coin-in-hand" src={mainImg} alt="coin in hand" />
+
 
             </section>
         </motion.div>

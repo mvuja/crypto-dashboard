@@ -1,11 +1,13 @@
 #calculator{
     display: flex;
     justify-content: space-between;
+    position: relative;
+    z-index: 1;
 
     .blue-circle{
         position: absolute;
         bottom: -35rem;
-        left: 5rem;
+        left: -30rem;
     }
 
     .container{
@@ -95,6 +97,6 @@
     }
 
     .coin-in-hand{
-        transform: translateX(-10px);
+        transform: translate(-10px, -13px);
     }
 }

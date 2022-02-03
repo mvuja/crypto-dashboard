@@ -5,6 +5,8 @@ import ContactItem from './ContactItem/ContactItem.jsx'
 import { motion } from "framer-motion"
 import { Select, SelectOption } from 'reaselct';
 
+import Cleave from 'cleave.js/react';
+
 import plus from '../../assets/add-new.svg';
 import blueCircle from '../../assets/blue-circle-tran.png';
 import yellowCircle from '../../assets/yellow-circle-tran.png';
@@ -12,7 +14,7 @@ import closeFormImg from '../../assets/close-form.svg';
 
 
 
-const Contacts = () => {
+const Contacts = props => {
     
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -30,6 +32,7 @@ const Contacts = () => {
 
     // ADD NEW COIN
     const [chosenCurrency, setChosenCurrency] = useState('BTC')
+
 
     // DELETE CONTACT
     const delContact = id => {
@@ -91,15 +94,11 @@ const Contacts = () => {
         const temp = localStorage.getItem('contacts')
         const savedContacts = JSON.parse(temp)
         return savedContacts || [
-            {id: uuidv4(), name: 'Marko', email: 'mvuja@gmail.com', amount: '3254325', coin: 'BTC'},
-            {id: uuidv4(), name: 'Marko', email: 'mvuja@gmail.com', amount: '3254325', coin: 'BTC'},
-            {id: uuidv4(), name: 'Marko', email: 'mvuja@gmail.com', amount: '3254325', coin: 'BTC'},
-            {id: uuidv4(), name: 'Marko', email: 'mvuja@gmail.com', amount: '3254325', coin: 'BTC'},
-            {id: uuidv4(), name: 'Marko', email: 'mvuja@gmail.com', amount: '3254325', coin: 'BTC'},
-            {id: uuidv4(), name: 'Marko', email: 'mvuja@gmail.com', amount: '3254325', coin: 'BTC'},
-            {id: uuidv4(), name: 'Marko', email: 'mvuja@gmail.com', amount: '3254325', coin: 'BTC'},
-            {id: uuidv4(), name: 'Marko', email: 'mvuja@gmail.com', amount: '3254325', coin: 'BTC'},
-            {id: uuidv4(), name: 'Marko', email: 'mvuja@gmail.com', amount: '3254325', coin: 'BTC'},
+            {id: uuidv4(), name: 'Enoch Davies', email: 'enoch.davies@gmail.com', amount: '32543', coin: 'BTC'},
+            {id: uuidv4(), name: 'Ivo Mcneill', email: 'ivo.mcneill@hotmail.com', amount: '554951', coin: 'ETH'},
+            {id: uuidv4(), name: 'Marco Reus', email: 'marco.reus11@bvb.com', amount: '24441', coin: 'BTC'},
+            {id: uuidv4(), name: 'Siana Whelan', email: 'siana.whelan@gmail.com', amount: '325818', coin: 'ADA'},
+            {id: uuidv4(), name: 'Dawood Forrest', email: 'dawood@gmail.com', amount: '9192', coin: 'SOL'},
         ]
     }
     useEffect(() => {
@@ -224,8 +223,11 @@ const Contacts = () => {
                             <thead>
                                 <tr>
                                     <th>Name</th>
+                                    <th>&nbsp;</th>
                                     <th>Email</th>
+                                    <th>&nbsp;</th>
                                     <th>Amount</th>
+                                    <th>&nbsp;</th>
                                     <th>Coin</th>
                                     <th>Action</th>
                                 </tr>
@@ -270,11 +272,21 @@ const Contacts = () => {
                             name="email"
                             onChange={onChangeEmail}
                         />
-                        <input className="add-new-input" type="number"
+                        {/* <input className="add-new-input" type="number"
                             placeholder="Amount"
                             value={amount} 
                             name="amount"
                             onChange={onChangeAmount}
+                        /> */}
+                        <Cleave className="add-new-input"
+                            placeholder="Amount"
+                            value={amount}
+                            name="amount"
+                            onChange={onChangeAmount}
+                            options={{ 
+                                numeral: true,
+                                numeralThousandsGroupStyle: 'thousand'
+                            }}
                         />
                         {/* <input type="text"
                             placeholder="Coin"
@@ -323,14 +335,27 @@ const Contacts = () => {
                                 setMailEdit(e.target.value)
                             }}
                         />
-                        <input className="edit-input" type="number"
+                        {/* <input className="edit-input" type="number"
                             value={amountEdit} 
                             name="Amount"
                             onChange={e => {
                                 setUpdate(e.target.value, IdEdit, 'amount')
                                 setAmountEdit(e.target.value)
                             }}
+                        /> */}
+                        <Cleave className="edit-input"
+                            value={amountEdit}
+                            name="amount"
+                            onChange={e => {
+                                setUpdate(e.target.value, IdEdit, 'amount')
+                                setAmountEdit(e.target.value)
+                            }}
+                            options={{ 
+                                numeral: true,
+                                numeralThousandsGroupStyle: 'thousand'
+                            }}
                         />
+
                         <div className="coin-select-wrapper">
                             <Select
                                 value={coinEdit}
