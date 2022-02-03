@@ -29,7 +29,6 @@ const Profile = () => {
     
         trackPromise(
           axios.request(options).then(function (response) {
-            console.log(response.data)
             setArticles(response.data)
           }).catch(function (error) {
               console.error(error)

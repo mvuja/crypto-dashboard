@@ -44,12 +44,15 @@ const Analytics = () => {
       setValues(Object.values(counts))
     }
 
-    const holderAmountPlaceholder = [] 
-    holderAmount.map(el => {
-      holderAmountPlaceholder.push(parseInt(el.replace(/,/g, '')))
-    })
-    setAmounts(holderAmountPlaceholder)
-    setAmountsCoins(holder)
+    if(holderAmount){
+      const holderAmountPlaceholder = []
+      holderAmount.map(el => {
+        holderAmountPlaceholder.push(parseInt(el.replace(/,/g, '')))
+      })
+      setAmounts(holderAmountPlaceholder)
+      setAmountsCoins(holder)
+    }
+
 
     
   }, [])
