@@ -3,10 +3,20 @@
     height: 100vh;
     position: relative;
 
+    @media only screen and (max-width: 1500px) {
+        flex-direction: column;
+        overflow: scroll;
+        align-items: center;
+    }
+
     .blue-circle{
         position: absolute;
         bottom: -35rem;
         left: -37rem;
+
+        @media only screen and (max-width: 1500px) {
+            display: none;
+        }
     }
     .yellow-circle{
         position: absolute;
@@ -18,6 +28,15 @@
         width: 100%;
         padding: 12rem 7rem 12rem;
         z-index: 1;
+
+        @media only screen and (max-width: 1500px) {
+            order: 1;
+            padding-bottom: 5rem;
+        }
+        
+        @media only screen and (max-height: 750px) {
+            padding: 8rem 7rem 5rem;
+        }
     
         & .contacts-header{
             display: flex;
@@ -25,6 +44,10 @@
             justify-content: space-between;
             margin-bottom: 5rem;
             padding-right: 3.5rem;
+
+            @media only screen and (max-width: 1500px) {
+                padding-right: 0;
+            }
     
             h2{
                 color: #fff;
@@ -48,6 +71,10 @@
             overflow-y: scroll;
             height: 86%;
             padding-right: 3rem;
+
+            @media only screen and (max-width: 1500px) {
+                padding-right: 0;
+            }
 
             &::-webkit-scrollbar {
                 width: .3vw;
@@ -160,12 +187,20 @@
         backdrop-filter: blur(12.5px);
         -webkit-backdrop-filter: blur(12.5px);
         border: 1px solid rgba(31, 39, 50, 1);
-        height: 60%;
         margin: auto 0;
         padding: 5rem 4rem;
         border-radius: 2rem 0 0 2rem;
         width: 60rem;
         transform: translateY(6rem);
+
+        @media only screen and (max-width: 1620px) {
+            width: 45rem;
+        }
+
+        @media only screen and (max-width: 1500px) {
+            border-radius: 2rem;
+            width: 80%;
+        }
 
         .add-new-top{
             display: flex;
@@ -188,6 +223,31 @@
             display: flex;
             flex-direction: column;
             gap: 1.6rem;
+            
+            @media only screen and (max-width: 1500px) {
+                display: grid;
+                grid-template-areas: 
+                    "a b"
+                    "c d"
+                    "e e";
+
+                .one{
+                    grid-area: a;
+                }
+                .two{
+                    grid-area: b;
+                }
+                .three{
+                    grid-area: c;
+                }
+                .four{
+                    grid-area: d;
+                }
+                .submit{
+                    grid-area: e;
+                    justify-self: start;
+                }
+            }
 
             .add-new-input{
                 background: #04040B;
@@ -238,12 +298,20 @@
         backdrop-filter: blur(12.5px);
         -webkit-backdrop-filter: blur(12.5px);
         border: 1px solid rgba(31, 39, 50, 1);
-        height: 60%;
         margin: auto 0;
         padding: 5rem 4rem;
         border-radius: 2rem 0 0 2rem;
         width: 60rem;
         transform: translateY(6rem);
+
+        @media only screen and (max-width: 1620px) {
+            width: 45rem;
+        }
+
+        @media only screen and (max-width: 1500px) {
+            border-radius: 2rem;
+            width: 80%;
+        }
 
         .add-new-top{
             display: flex;
@@ -266,6 +334,31 @@
             display: flex;
             flex-direction: column;
             gap: 1.6rem;
+
+            @media only screen and (max-width: 1500px) {
+                display: grid;
+                grid-template-areas: 
+                    "a b"
+                    "c d"
+                    "e e";
+
+                .one{
+                    grid-area: a;
+                }
+                .two{
+                    grid-area: b;
+                }
+                .three{
+                    grid-area: c;
+                }
+                .four{
+                    grid-area: d;
+                }
+                .edit-done{
+                    grid-area: e;
+                    justify-self: start;
+                }
+            }
 
             .edit-input{
                 background: #04040B;

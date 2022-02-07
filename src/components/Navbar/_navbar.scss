@@ -11,6 +11,10 @@
 
     .nav-logo{
         margin: 7rem 0 13rem;
+
+        @media only screen and (max-height: 750px) {
+            margin: 5rem 0 10rem;
+        }
     }
 
     .nav-links{

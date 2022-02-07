@@ -90,15 +90,11 @@ html{
   scrollbar-width: normal;
 
   @include respond(tab-land){
-      font-size: 56.25%;
+    font-size: 56.25%;
   }
 
   @include respond(tab-port){
-      font-size: 50%;
-  }
-
-  @include respond(big-desktop){
-      font-size: 75%;
+    font-size: 50%;
   }
 }
 html.no-scroll{
@@ -111,11 +107,6 @@ body {
   box-sizing: border-box;
   overflow: hidden;
   font-family: 'Syne', sans-serif;
-  min-height: 90rem;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 img {
@@ -179,7 +170,7 @@ h1, h2, h3{
   grid-template-columns: 38rem 1fr;
   background: #04040B;
   width: 100vw;
-  // max-width: 100%;
+  min-height: 70rem;
   height: 100vh;
   overflow: hidden;
   
@@ -188,9 +179,9 @@ h1, h2, h3{
     // overflow-y: scroll;
   }
 
-  @media only screen and (max-width: 1640px) {
-    display: none;
-  }
+  // @media only screen and (max-width: 1640px) {
+  //   display: none;
+  // }
 }
 
 .resize{
@@ -201,19 +192,19 @@ h1, h2, h3{
   align-items: center;
   justify-content: center;
 
-  .resize-txt{
-    font-size: 5rem;
-    color: #fff;
-    font-weight: 700;
+  // .resize-txt{
+  //   font-size: 5rem;
+  //   color: #fff;
+  //   font-weight: 700;
 
-    @media only screen and (max-width: 740px) {
-      font-size: 2rem;
-    }
-  }
+  //   @media only screen and (max-width: 740px) {
+  //     font-size: 2rem;
+  //   }
+  // }
 
-  @media only screen and (max-width: 1640px) {
-    display: flex;
-  }
+  // @media only screen and (max-width: 1640px) {
+  //   display: flex;
+  // }
 
 
 

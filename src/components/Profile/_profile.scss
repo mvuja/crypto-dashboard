@@ -13,6 +13,10 @@
         height: 100%;
         padding: 12rem 7rem 12rem;
         position: relative;
+
+        @media only screen and (max-height: 750px) {
+            padding: 8rem 7rem 12rem;
+        }
     }
 
     .blue-circle{

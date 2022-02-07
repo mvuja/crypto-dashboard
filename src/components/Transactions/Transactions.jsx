@@ -260,13 +260,13 @@ const Contacts = props => {
                     </div>
 
                     <form onSubmit={handleSubmit} className="contact-form">
-                        <input className="add-new-input" type="text"
+                        <input className="add-new-input one" type="text"
                             placeholder="Name"
                             value={name} 
                             name="Name"
                             onChange={onChangeName}
                         />
-                        <input className="add-new-input" type="email"
+                        <input className="add-new-input two" type="email"
                             placeholder="E-mail"
                             value={email} 
                             name="email"
@@ -278,7 +278,7 @@ const Contacts = props => {
                             name="amount"
                             onChange={onChangeAmount}
                         /> */}
-                        <Cleave className="add-new-input"
+                        <Cleave className="add-new-input three"
                             placeholder="Amount"
                             value={amount}
                             name="amount"
@@ -294,13 +294,13 @@ const Contacts = props => {
                             name="lastName"
                             onChange={onChangeLN}
                         /> */}
-                        <div className="coin-select-wrapper">
+                        <div className="coin-select-wrapper four">
                             <Select
                                 value={chosenCurrency}
                                 onChange={setChosenCurrency}
                                 filterable={false}
                                 clearable={false}
-                                style={{width: '100%'}}
+                                style={{ height: 100 }} 
                                 >
                                 {currencies.map( (el, i) => (<SelectOption key={i} value={el}>{el}</SelectOption>))}
                             </Select>
@@ -319,7 +319,7 @@ const Contacts = props => {
                     </div>
 
                     <div className="contact-form">
-                        <input className="edit-input" type="text"
+                        <input className="edit-input one" type="text"
                             value={nameEdit}
                             name="Name"
                             onChange={e => {
@@ -327,7 +327,7 @@ const Contacts = props => {
                                 setNameEdit(e.target.value)
                             }}
                         />
-                        <input className="edit-input" type="email"
+                        <input className="edit-input two" type="email"
                             value={mailEdit} 
                             name="E mail"
                             onChange={e => {
@@ -343,7 +343,7 @@ const Contacts = props => {
                                 setAmountEdit(e.target.value)
                             }}
                         /> */}
-                        <Cleave className="edit-input"
+                        <Cleave className="edit-input three"
                             value={amountEdit}
                             name="amount"
                             onChange={e => {
@@ -356,7 +356,7 @@ const Contacts = props => {
                             }}
                         />
 
-                        <div className="coin-select-wrapper">
+                        <div className="coin-select-wrapper four">
                             <Select
                                 value={coinEdit}
                                 onChange={e => {

@@ -16,26 +16,26 @@ const Profile = () => {
     const [articles, setArticles] = useState(null)
 
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        const options = {
-          method: 'GET',
-          url: 'https://crypto-news14.p.rapidapi.com/news/coindesk',
-          headers: {
-            'x-rapidapi-host': 'crypto-news14.p.rapidapi.com',
-            'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY
-          }
-        };
+    //     const options = {
+    //       method: 'GET',
+    //       url: 'https://crypto-news14.p.rapidapi.com/news/coindesk',
+    //       headers: {
+    //         'x-rapidapi-host': 'crypto-news14.p.rapidapi.com',
+    //         'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY
+    //       }
+    //     };
     
-        trackPromise(
-          axios.request(options).then(function (response) {
-            setArticles(response.data)
-          }).catch(function (error) {
-              console.error(error)
-          })
-        )
+    //     trackPromise(
+    //       axios.request(options).then(function (response) {
+    //         setArticles(response.data)
+    //       }).catch(function (error) {
+    //           console.error(error)
+    //       })
+    //     )
 
-    }, [])
+    // }, [])
 
     const firstArticle = articles?.slice(0, 1)
     const firstTenArticles = articles?.slice(1, 10)
@@ -62,7 +62,7 @@ const Profile = () => {
           <img className="yellow-circle" src={yellowCircle} alt="yellow circle" />
 
 
-          {(promiseInProgress === true) ?
+          {/* {(promiseInProgress === true) ?
           <div id="loader">
             <PropagateLoader color={color} css={override} size={20} />
           </div>
@@ -96,7 +96,7 @@ const Profile = () => {
             </div>
 
           </div>
-          }
+          } */}
         </section>
       </motion.div>
 
