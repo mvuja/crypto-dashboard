@@ -4,14 +4,28 @@
     position: relative;
     z-index: 1;
 
+    @media only screen and (max-width: 1400px) {
+        overflow-y: scroll;
+    }
+
     .blue-circle{
         position: absolute;
         bottom: -35rem;
         left: -30rem;
+        z-index: -1;
+
+        @media only screen and (max-width: 1600px) {
+            right: -30rem;
+            left: auto;
+        }
     }
 
     .container{
         padding: 12rem 7rem 12rem;
+
+        @media only screen and (max-height: 750px) {
+            padding: 8rem 7rem 5rem;
+        }
 
         h2{
             color: #fff;
@@ -21,6 +35,10 @@
         .currency-boxes{
             display: flex;
             gap: 3rem;
+
+            @media only screen and (max-width: 1400px) {
+                flex-direction: column;
+            }
 
             .currency-box{
                 background: linear-gradient(to bottom right, rgba(61, 70, 102, 0.15), rgba(31, 32, 37, 0.06));
@@ -48,6 +66,10 @@
                         padding: 2rem;
                         color: #fff;
                         font-size: 1.6rem;
+
+                        @media only screen and (max-width: 1400px) {
+                            flex: 1;
+                        }
                         
                         &:first-child{
                             border-radius: 1rem 0 0 1rem;
@@ -98,5 +120,9 @@
 
     .coin-in-hand{
         transform: translate(-10px, -13px);
+
+        @media only screen and (max-width: 1600px) {
+            display: none;
+        }
     }
 }

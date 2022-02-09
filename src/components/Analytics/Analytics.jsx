@@ -111,6 +111,7 @@ const Analytics = () => {
 
   const options = {
     responsive: true,
+    // maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'bottom',
@@ -125,6 +126,7 @@ const Analytics = () => {
 
   const optionsPie = {
     responsive: true,
+    // maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'bottom',
@@ -152,7 +154,7 @@ const Analytics = () => {
               <Pie data={data} options={optionsPie} />
             </div>
             <div className="canvas-bar canvas">
-            <Bar options={options} data={dataLine} />
+              <Bar options={options} data={dataLine} />
             </div>
           </div>
 

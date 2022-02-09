@@ -43,6 +43,10 @@
             z-index: -1;
             left: 0;
             transition: top var(--ease-duration) var(--ease-mode);
+
+            @media only screen and (max-width: 1200px) {
+                display: none;
+            }
         }
 
         .line{
@@ -53,6 +57,10 @@
             z-index: -1;
             left: 0;
             transition: top var(--ease-duration) var(--ease-mode);
+
+            @media only screen and (max-width: 1200px) {
+                display: none;
+            }
         }
         
         .nav-link{

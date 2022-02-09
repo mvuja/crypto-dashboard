@@ -64,19 +64,19 @@ display: block;
 
 // SCROLLBAR
 
-html::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: .5vw;
 }
 
-html::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: var(--primary-color);
 }
 
-html::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: #fff;
 }
 
-html::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
   background: #dadada;
 }
 
@@ -179,9 +179,13 @@ h1, h2, h3{
     // overflow-y: scroll;
   }
 
-  // @media only screen and (max-width: 1640px) {
-  //   display: none;
-  // }
+  @media only screen and (max-width: 1200px) {
+    grid-template-columns: 30rem 1fr;
+  }
+  
+  @media only screen and (max-width: 1000px) {
+    display: none;
+  }
 }
 
 .resize{
@@ -192,19 +196,19 @@ h1, h2, h3{
   align-items: center;
   justify-content: center;
 
-  // .resize-txt{
-  //   font-size: 5rem;
-  //   color: #fff;
-  //   font-weight: 700;
+  .resize-txt{
+    font-size: 5rem;
+    color: #fff;
+    font-weight: 700;
 
-  //   @media only screen and (max-width: 740px) {
-  //     font-size: 2rem;
-  //   }
-  // }
+    @media only screen and (max-width: 740px) {
+      font-size: 2rem;
+    }
+  }
 
-  // @media only screen and (max-width: 1640px) {
-  //   display: flex;
-  // }
+  @media only screen and (max-width: 1000px) {
+    display: flex;
+  }
 
 
 

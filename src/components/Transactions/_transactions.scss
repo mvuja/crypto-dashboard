@@ -5,7 +5,7 @@
 
     @media only screen and (max-width: 1500px) {
         flex-direction: column;
-        overflow: scroll;
+        overflow-y: scroll;
         align-items: center;
     }
 
@@ -74,6 +74,7 @@
 
             @media only screen and (max-width: 1500px) {
                 padding-right: 0;
+                height: auto;
             }
 
             &::-webkit-scrollbar {
