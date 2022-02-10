@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from 'react'
-import { Route, Switch, useLocation } from 'react-router-dom'
+import { Route, Switch, useLocation, Redirect } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import Navbar from './components/Navbar/Navbar.jsx'
 import Profile from './components/Profile/Profile.jsx'
@@ -47,10 +47,19 @@ function App() {
         <div className='main-content'>
           <AnimatePresence exitBeforeEnter>
             <Switch location={location} key={location.pathname}>
-              <Route exact path="/" component={Profile} />
-              <Route path="/calculator" component={Calculator} />
-              <Route path="/analytics" component={Analytics} />
-              <Route path="/transactions"><Transactions contacts={contacts} setContacts={setContacts} /></Route>
+              <Route path="/news">
+                <Profile />
+              </Route>
+              <Route path="/calculator">
+                <Calculator />
+              </Route>
+              <Route path="/analytics">
+                <Analytics />
+              </Route>
+              <Route path="/transactions">
+                <Transactions contacts={contacts} setContacts={setContacts} />
+              </Route>
+              <Redirect from="/" to="/news"/>
               
               {/* <Route path="*" component={NotMatch}/> */}
             </Switch>
