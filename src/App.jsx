@@ -1,5 +1,6 @@
 import { React, useEffect, useState } from 'react'
-import { Route, Switch, Redirect, useLocation } from 'react-router-dom'
+import { Route, Switch, useLocation } from 'react-router-dom'
+import { v4 as uuidv4 } from 'uuid'
 import Navbar from './components/Navbar/Navbar.jsx'
 import Profile from './components/Profile/Profile.jsx'
 import Transactions from './components/Transactions/Transactions.jsx'
@@ -12,30 +13,27 @@ import { AnimatePresence } from "framer-motion"
 function App() {
 
   const location = useLocation()
+  const [contacts, setContacts] = useState(getInitialContacts())
 
-  // const [resize, setResize] = useState(false)
+  // LOCAL STORAGE
+  function getInitialContacts() {
+    const temp = localStorage.getItem('contacts')
+    const savedContacts = JSON.parse(temp)
+    return savedContacts || [
+        {id: uuidv4(), name: 'Enoch Davies', email: 'enoch.davies@gmail.com', amount: '32543', coin: 'BTC'},
+        {id: uuidv4(), name: 'Ivo Mcneill', email: 'ivo.mcneill@hotmail.com', amount: '554951', coin: 'ETH'},
+        {id: uuidv4(), name: 'Marco Reus', email: 'marco.reus11@bvb.com', amount: '24441', coin: 'BTC'},
+        {id: uuidv4(), name: 'Siana Whelan', email: 'siana.whelan@gmail.com', amount: '325818', coin: 'ADA'},
+        {id: uuidv4(), name: 'Dawood Forrest', email: 'dawood@gmail.com', amount: '9192', coin: 'SOL'},
+    ]
+  }
+  useEffect(() => {
+    const temp = JSON.stringify(contacts)
+    localStorage.setItem('contacts', temp)
 
-  // useEffect(() => {
-  //   window.addEventListener('resize', () => {
-  //     console.log(window.innerWidth)
-  //     if(window.innerWidth <= 1640){
-  //       setResize(true)
-  //     }else{
-  //       setResize(false)
-  //     }
-  //   });
+  }, [contacts])
 
-  //   function myFunction(x) {
-  //     if (x.matches) { // If media query matches
-  //       setResize(true)
-  //     } else {
-  //       setResize(false)
-  //     }
-  //   }
-    
-  //   const x = window.matchMedia("(max-width: 1640px)")
-  //   x.addListener(myFunction)
-  // }, [])
+
 
   return (
     <section id="main-app">
@@ -49,11 +47,10 @@ function App() {
         <div className='main-content'>
           <AnimatePresence exitBeforeEnter>
             <Switch location={location} key={location.pathname}>
-              <Redirect exact path="/" to="/news" />
-              <Route path="/news" component={Profile} />
+              <Route exact path="/" component={Profile} />
               <Route path="/calculator" component={Calculator} />
               <Route path="/analytics" component={Analytics} />
-              <Route path="/transactions" component={Transactions} />
+              <Route path="/transactions"><Transactions contacts={contacts} setContacts={setContacts} /></Route>
               
               {/* <Route path="*" component={NotMatch}/> */}
             </Switch>

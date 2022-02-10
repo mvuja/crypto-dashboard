@@ -15,6 +15,8 @@ import closeFormImg from '../../assets/close-form.svg';
 
 
 const Contacts = props => {
+
+    console.log(props.contacts)
     
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -28,7 +30,7 @@ const Contacts = props => {
     const [coinEdit, setCoinEdit] = useState('')
     const [IdEdit, setIdEdit] = useState()
 
-    const [contacts, setContacts] = useState(getInitialContacts())
+    // const [props.contacts, props.setContacts] = useState(getInitialContacts())
 
     // ADD NEW COIN
     const [chosenCurrency, setChosenCurrency] = useState('BTC')
@@ -36,8 +38,8 @@ const Contacts = props => {
 
     // DELETE CONTACT
     const delContact = id => {
-        setContacts([
-            ...contacts.filter(el => {
+        props.setContacts([
+            ...props.contacts.filter(el => {
                 return el.id !== id
             })
         ])
@@ -53,7 +55,7 @@ const Contacts = props => {
             amount: amount,
             coin: coin,
         }
-        setContacts([...contacts, newContact])
+        props.setContacts([...props.contacts, newContact])
     }
 
     const onChangeName = e => {
@@ -90,22 +92,22 @@ const Contacts = props => {
 
 
     // LOCAL STORAGE
-    function getInitialContacts() {
-        const temp = localStorage.getItem('contacts')
-        const savedContacts = JSON.parse(temp)
-        return savedContacts || [
-            {id: uuidv4(), name: 'Enoch Davies', email: 'enoch.davies@gmail.com', amount: '32543', coin: 'BTC'},
-            {id: uuidv4(), name: 'Ivo Mcneill', email: 'ivo.mcneill@hotmail.com', amount: '554951', coin: 'ETH'},
-            {id: uuidv4(), name: 'Marco Reus', email: 'marco.reus11@bvb.com', amount: '24441', coin: 'BTC'},
-            {id: uuidv4(), name: 'Siana Whelan', email: 'siana.whelan@gmail.com', amount: '325818', coin: 'ADA'},
-            {id: uuidv4(), name: 'Dawood Forrest', email: 'dawood@gmail.com', amount: '9192', coin: 'SOL'},
-        ]
-    }
-    useEffect(() => {
-        const temp = JSON.stringify(contacts)
-        localStorage.setItem('contacts', temp)
+    // function getInitialContacts() {
+    //     const temp = localStorage.getItem('props.contacts')
+    //     const savedContacts = JSON.parse(temp)
+    //     return savedContacts || [
+    //         {id: uuidv4(), name: 'Enoch Davies', email: 'enoch.davies@gmail.com', amount: '32543', coin: 'BTC'},
+    //         {id: uuidv4(), name: 'Ivo Mcneill', email: 'ivo.mcneill@hotmail.com', amount: '554951', coin: 'ETH'},
+    //         {id: uuidv4(), name: 'Marco Reus', email: 'marco.reus11@bvb.com', amount: '24441', coin: 'BTC'},
+    //         {id: uuidv4(), name: 'Siana Whelan', email: 'siana.whelan@gmail.com', amount: '325818', coin: 'ADA'},
+    //         {id: uuidv4(), name: 'Dawood Forrest', email: 'dawood@gmail.com', amount: '9192', coin: 'SOL'},
+    //     ]
+    // }
+    // useEffect(() => {
+    //     const temp = JSON.stringify(props.contacts)
+    //     localStorage.setItem('props.contacts', temp)
 
-    }, [contacts])
+    // }, [props.contacts])
 
 
 
@@ -141,7 +143,7 @@ const Contacts = props => {
 
     const handleEditing = id => {
         setEditing(true)
-        contacts.map(el => {
+        props.contacts.map(el => {
             if(el.id === id){
                 setNameEdit(el.name)
                 setMailEdit(el.email)
@@ -166,8 +168,8 @@ const Contacts = props => {
     }, [editing]);
 
     const setUpdate = (updatedInput, id, type) => {
-        setContacts(
-            contacts.map(el => {
+        props.setContacts(
+            props.contacts.map(el => {
                 if(el.id === id){
                     switch (type) {
                         case 'name':
@@ -234,17 +236,14 @@ const Contacts = props => {
                             </thead>
                             <tbody>
                                 {
-                                contacts ?
-                                    contacts.map(el => (
-                                        <ContactItem
-                                            key={el.id}
-                                            contact={el}
-                                            deleteContactProps={delContact}
-                                            editContactProps={handleEditing}
-                                        />
-                                    ))
-                                    :
-                                    ''
+                                props.contacts.map(el => (
+                                    <ContactItem
+                                        key={el.id}
+                                        contact={el}
+                                        deleteContactProps={delContact}
+                                        editContactProps={handleEditing}
+                                    />
+                                ))
                                 }
                             </tbody>
                         </table>
