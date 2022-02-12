@@ -4,8 +4,9 @@ import './_transactions.scss';
 import ContactItem from './ContactItem/ContactItem.jsx'
 import { motion } from "framer-motion"
 import { Select, SelectOption } from 'reaselct';
-
 import Cleave from 'cleave.js/react';
+
+import Button from '../SmallComponents/Button/Button.jsx'
 
 import plus from '../../assets/add-new.svg';
 import blueCircle from '../../assets/blue-circle-tran.png';
@@ -15,8 +16,6 @@ import closeFormImg from '../../assets/close-form.svg';
 
 
 const Contacts = props => {
-
-    console.log(props.contacts)
     
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -216,7 +215,7 @@ const Contacts = props => {
                     <div className="contacts-header">
                         <h2>Transactions</h2>
                         <button onClick={addNewHandler} className="add-contact">
-                        <img className="add-new" src={plus} alt="plus"/>
+                            <img className="add-new" src={plus} alt="plus"/>
                             Add New
                         </button>
                     </div>
@@ -305,7 +304,7 @@ const Contacts = props => {
                             </Select>
                         </div>
 
-                        <button className="btn submit">Submit</button>
+                        <Button className="submit">Submit</Button>
                     </form>
                 </div>
 
@@ -368,7 +367,7 @@ const Contacts = props => {
                                 {currencies.map( (el, i) => (<SelectOption key={i} value={el}>{el}</SelectOption>))}
                             </Select>
                         </div>
-                        <button onClick={removeEditingForm} className="btn edit-done">Done</button>
+                        <Button onClickHandler={removeEditingForm} className="edit-done">Done</Button>
                     </div>
                 </div>
             </div>

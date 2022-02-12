@@ -37,7 +37,7 @@
 }
 
 ::selection{
-  background: #435CFE;
+  background: #1105F7;
   color: #fff;
 }
 
@@ -208,18 +208,5 @@ h1, h2, h3{
 
   @media only screen and (max-width: 1000px) {
     display: flex;
-  }
-
-
-
-}
-
-
-.btn{
-  transition: background .3s ease, color .3s ease;
-
-  &:hover{
-    background: #fff!important;
-    color: var(--secondary-color)!important;
   }
 }

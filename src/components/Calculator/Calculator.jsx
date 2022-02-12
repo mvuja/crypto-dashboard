@@ -1,8 +1,10 @@
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 import { Select, SelectOption } from 'reaselct';
 import axios from "axios";
 import './_calculator.scss'
 import { motion } from "framer-motion"
+
+import Button from '../SmallComponents/Button/Button.jsx'
 
 import mainImg from '../../assets/transactions-main-img.png';
 import blueCircle from '../../assets/blue-circle-tran.png';
@@ -21,10 +23,6 @@ const Calculator = () => {
     
     const [exchangeRate, setExchangeRate] = useState(0)
     const [result, setResult] = useState(0)
-
-
-    // SELECT PLUGIN
-    const [value, setValue] = useState(null);
 
 
     const convert = () => {
@@ -107,15 +105,15 @@ const Calculator = () => {
                     </div>
 
                     <div className="convert-container">
-                        <button className="btn convert-btn"
-                        onClick={convert}>Convert</button>
+                        <Button className="convert-btn"
+                        onClickHandler={convert}>Convert</Button>
 
                         <div className="prices-result">
                             <p className="exchange-rate">Exchange rate: {exchangeRate}</p>
                             <p className="total-amount">Total Amount: {result}</p>
                         </div>
                     </div>
-
+                    
                 </div>
 
                 <img className="coin-in-hand" src={mainImg} alt="coin in hand" />

@@ -34,7 +34,6 @@ function App() {
   }, [contacts])
 
 
-
   return (
     <section id="main-app">
         <div className="resize">
