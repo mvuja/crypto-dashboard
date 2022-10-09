@@ -20,12 +20,12 @@ const Profile = () => {
 
         const options = {
           method: 'GET',
-          url: 'https://crypto-news14.p.rapidapi.com/news/coindesk',
+          url: 'https://crypto-news14.p.rapidapi.com/news/cointelegraph',
           headers: {
             'x-rapidapi-host': 'crypto-news14.p.rapidapi.com',
             'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY
           }
-        };
+        }
     
         trackPromise(
           axios.request(options).then(function (response) {
@@ -73,8 +73,8 @@ const Profile = () => {
             <div className="news-container">
               <div className="main-news">
               {firstArticle?.map((el, i) => (
-                  <a key={i} href={`https://www.coindesk.com/${el.url}`} target='_blank'>
-                    <p className="news-date">{el.date}</p>
+                  <a key={i} rel="noreferrer" href={`${el.url}`} target='_blank'>
+                    <p className="news-date">{new Date(el.date).toLocaleDateString('en-us', {year:"numeric", month:"short", day:"numeric"})}   </p>
                     <h3 className="news-title">{el.title}</h3>
                     <p className="news-desc">{el.desc}</p>
                     <img src={newsImg} alt="Bitcoin" />
@@ -82,13 +82,12 @@ const Profile = () => {
                 ))}
               </div>
 
-
               <div className="other-news">
 
                 {firstTenArticles?.map((el, i) => (
-                  <a key={i} href={`https://www.coindesk.com/${el.url}`} target='_blank'>
+                  <a key={i} rel="noreferrer" href={`${el.url}`} target='_blank'>
                     <h3 className="news-title">{el.title}</h3>
-                    <p className="news-date">{el.date}</p>
+                    <p className="news-date">{new Date(el.date).toLocaleDateString('en-us', {year:"numeric", month:"short", day:"numeric"})}</p>
                   </a>
                 ))}
 
