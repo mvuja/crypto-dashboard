@@ -20,16 +20,17 @@ const Profile = () => {
 
         const options = {
           method: 'GET',
-          url: 'https://crypto-news14.p.rapidapi.com/news/cointelegraph',
+          url: 'https://yahoo-finance127.p.rapidapi.com/news/tsla',
           headers: {
-            'x-rapidapi-host': 'crypto-news14.p.rapidapi.com',
-            'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY
+            'X-RapidAPI-Key': 'd24265ecc8msh1bac037784ae606p1e9c97jsn2046b3c50b91',
+            'X-RapidAPI-Host': 'yahoo-finance127.p.rapidapi.com'
           }
         }
     
         trackPromise(
           axios.request(options).then(function (response) {
-            setArticles(response.data)
+            setArticles(Object.values(response.data))
+            // console.log(Object.values(response.data))
           }).catch(function (error) {
               console.error(error)
           })
@@ -72,11 +73,11 @@ const Profile = () => {
             
             <div className="news-container">
               <div className="main-news">
-              {firstArticle?.map((el, i) => (
-                  <a key={i} rel="noreferrer" href={`${el.url}`} target='_blank'>
-                    <p className="news-date">{new Date(el.date).toLocaleDateString('en-us', {year:"numeric", month:"short", day:"numeric"})}   </p>
+              {firstArticle?.map((el) => (
+                  <a key={el.uuid} rel="noreferrer" href={`${el.link}`} target='_blank'>
+                    {/* <p className="news-date">{new Date(el.date).toLocaleDateString('en-us', {year:"numeric", month:"short", day:"numeric"})}</p> */}
                     <h3 className="news-title">{el.title}</h3>
-                    <p className="news-desc">{el.desc}</p>
+                    {/* <p className="news-desc">{el.desc}</p> */}
                     <img src={newsImg} alt="Bitcoin" />
                   </a>
                 ))}
@@ -84,10 +85,10 @@ const Profile = () => {
 
               <div className="other-news">
 
-                {firstTenArticles?.map((el, i) => (
-                  <a key={i} rel="noreferrer" href={`${el.url}`} target='_blank'>
+                {firstTenArticles?.map((el) => (
+                  <a key={el.uuid} rel="noreferrer" href={`${el.link}`} target='_blank'>
                     <h3 className="news-title">{el.title}</h3>
-                    <p className="news-date">{new Date(el.date).toLocaleDateString('en-us', {year:"numeric", month:"short", day:"numeric"})}</p>
+                    {/* <p className="news-date">{new Date(el.date).toLocaleDateString('en-us', {year:"numeric", month:"short", day:"numeric"})}</p> */}
                   </a>
                 ))}
 

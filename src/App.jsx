@@ -42,30 +42,30 @@ function App() {
           </p>
         </div>
         <main id='main'>
-        <Navbar />
-        <div className='main-content'>
-          <AnimatePresence exitBeforeEnter>
-            <Switch location={location} key={location.pathname}>
-              <Route path="/news">
-                <Profile />
-              </Route>
-              <Route path="/calculator">
-                <Calculator />
-              </Route>
-              <Route path="/analytics">
-                <Analytics />
-              </Route>
-              <Route path="/transactions">
-                <Transactions contacts={contacts} setContacts={setContacts} />
-              </Route>
-              <Redirect from="/" to="/news"/>
-              
-              {/* <Route path="*" component={NotMatch}/> */}
-            </Switch>
-          </AnimatePresence>
+          <Navbar />
+          <div className='main-content'>
+            <AnimatePresence exitBeforeEnter>
+              <Switch location={location} key={location.pathname}>
+                <Route path="/news">
+                  <Profile />
+                </Route>
+                <Route path="/calculator">
+                  <Calculator />
+                </Route>
+                <Route path="/analytics">
+                  <Analytics />
+                </Route>
+                <Route path="/transactions">
+                  <Transactions contacts={contacts} setContacts={setContacts} />
+                </Route>
+                <Redirect from="/" to="/news"/>
+                
+                {/* <Route path="*" component={NotMatch}/> */}
+              </Switch>
+            </AnimatePresence>
 
-        </div>
-      </main>
+          </div>
+        </main>
     </section>
 
   )

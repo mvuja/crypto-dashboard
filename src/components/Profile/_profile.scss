@@ -58,14 +58,15 @@
                 max-width: 66.5rem;
                 height: 100%;
                 max-height: 61rem;
+                display: flex;
+                flex-direction: column;
 
                 & > *:not(img){
                     padding-right: 5rem;
                 }
 
                 img{
-                    transform: translateY(5px);
-                    margin-top: 5rem;
+                    margin-top: auto;
                 }
             }
 
@@ -73,7 +74,7 @@
                font-size: 2.6rem;
                color: #fff;
                display: -webkit-box;
-               -webkit-line-clamp: 2;
+               -webkit-line-clamp: 3;
                -webkit-box-orient: vertical;  
                overflow: hidden;
                line-height: 1.5;
