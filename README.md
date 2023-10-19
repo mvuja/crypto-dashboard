@@ -20,7 +20,7 @@ npm run build
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
+The build is minified and the filenames include the hashes.
 
 The **Crypto Dashboard** is a sophisticated web application designed for tracking cryptocurrency prices, staying updated with the latest crypto news, and efficiently managing your crypto transactions with the added benefit of analytical tools. It has been meticulously crafted using React.js and Sass to deliver a powerful and intuitive user experience.
 
