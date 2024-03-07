@@ -1,0 +1,117 @@
+#analytics {
+    position: relative;
+
+    .blue-circle {
+        position: absolute;
+        bottom: 0;
+        left: -37rem;
+    }
+    .yellow-circle {
+        position: absolute;
+        top: -34rem;
+        right: 38rem;
+    }
+
+    .container {
+        height: 100vh;
+        padding: 12rem 7rem 12rem;
+
+        @media only screen and (max-width: 800px) {
+            padding: 8rem 2rem 0rem;
+        }
+
+        h2 {
+            color: #fff;
+            margin-bottom: 8rem;
+
+            @media only screen and (max-width: 800px) {
+                margin-bottom: 5rem;
+            }
+        }
+
+        .charts {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+
+            @media only screen and (max-width: 1600px) {
+                grid-template-columns: 1fr;
+                justify-items: center;
+            }
+
+            @media only screen and (max-width: 800px) {
+                padding-bottom: 10rem;
+            }
+
+            .canvas {
+                background: linear-gradient(
+                    to bottom right,
+                    rgba(61, 70, 102, 0.15),
+                    rgba(31, 32, 37, 0.06)
+                );
+                backdrop-filter: blur(12.5px);
+                -webkit-backdrop-filter: blur(12.5px);
+                border: 1px solid rgba(31, 39, 50, 1);
+                padding: 5rem 6rem 10rem;
+                border-radius: 2rem;
+
+                @media only screen and (max-width: 800px) {
+                    padding: 2rem 0.5rem 3rem;
+                }
+            }
+
+            .canvas-pie {
+                // --aspect: 55rem;
+                --aspect: 30vw;
+                width: var(--aspect);
+                // height: var(--aspect);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                @media only screen and (max-width: 1600px) {
+                    width: 50vw;
+                }
+
+                canvas {
+                    width: 100%;
+                }
+
+                @media only screen and (max-width: 800px) {
+                    width: 100%;
+                }
+            }
+
+            .canvas-bar {
+                --aspect: 80rem;
+                width: 40vw;
+                // height: var(--aspect);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                canvas {
+                    width: 100%;
+                }
+
+                @media only screen and (max-width: 1600px) {
+                    width: 50vw;
+                }
+
+                @media only screen and (max-width: 800px) {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    & h2 {
+        color: black;
+    }
+
+    & a {
+        display: block;
+        margin-top: 1rem;
+        font-size: 2rem;
+    }
+}

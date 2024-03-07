@@ -1,0 +1,18 @@
+.btn{
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+    border: 1px solid #fff;
+    padding: 2rem 6rem;
+    align-self: flex-start;
+    color: #fff;
+    border-radius: 1rem;
+    font-size: 1.6rem;
+    margin-top: 1em;
+    transition: background .3s ease, color .3s ease;
+  
+    &:hover{
+      background: #fff!important;
+      color: var(--secondary-color);
+    }
+  }
